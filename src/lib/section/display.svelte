@@ -257,7 +257,7 @@
 <div id="bg" class="absolute top-0 left-0 size-full z-0"></div>
 
 {#if editing}
-	<ColorCycle {setColor} closeEidting={resetData} />
+		<ColorCycle {setColor} closeEidting={resetData} />
 {/if}
 
 <style>

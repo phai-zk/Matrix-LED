@@ -167,7 +167,7 @@
 </script>
 
 <div
-	class=" absolute p-3 bg-white z-20 sm:top-10 sm:right-10 sm:bottom-10 bottom-0 left-5 right-5 top-[50vh] flex flex-col"
+	class=" absolute p-3 bg-white z-20 lg:top-10 lg:right-10 lg:bottom-10 bottom-0 top-[50vh] md:right-0 right-[5%] lg:w-fit w-fit flex flex-col"
 	style="border-radius: 20px;border: 2px solid #000;"
 >
 	<div class=" overflow-y-auto">
