@@ -1,34 +1,44 @@
 <script lang="ts">
 	import { fly } from "svelte/transition";
-	let isOpen = $state(true);
-	const View = {
+
+	//#region Props
+	let { setPerspective, setViewGrid, viewGrid } = $props();
+	//#endregion
+
+	//#region State Variable
+	const View: any = {
 		Top: "Top View",
 		Front: "Front View",
 		Side: "Side View",
 	};
-	let selectedView = $state(View.Side);
-	let { setPersective, setViewGrid, viewGrid } = $props();
+	let selectedView: any = $state(View.Side);
+	let isOpen: boolean = $state(true);
+	//#endregion
 
+	//#region Viewpoint Management
+	/** Updating View point */
 	function updateView(view: any) {
 		switch (view) {
 			case View.Top:
-				setPersective(-80, 0, -150, 0);
+				setPerspective(-80, 0, -150, 0);
 				selectedView = View.Top;
 				break;
 			case View.Front:
-				setPersective(0, 0, 0, 0);
+				setPerspective(0, 0, 0, 0);
 				selectedView = View.Front;
 				break;
 			case View.Side:
-				setPersective(-30, 30, -50, -50);
+				setPerspective(-30, 30, -50, -50);
 				selectedView = View.Side;
 				break;
 			default:
 				break;
 		}
 	}
+	//#endregion
 </script>
 
+<!-- View Panel -->
 {#if isOpen}
 	<div
 		in:fly={{ x: -200 }}
@@ -37,6 +47,7 @@
 		class="panel relative z-20 flex flex-col md:w-[200px] w-[150px]"
 	>
 		<div class="view w-full text-center md:text-md text-sm py-1">View</div>
+		<!-- TOP View -->
 		<button
 			id="Top"
 			class="py-1 {selectedView === View.Top ? 'active' : ''}"
@@ -46,6 +57,8 @@
 		>
 			<div class="md:text-md text-sm">Top View</div>
 		</button>
+		<!-- TOP View -->
+		<!-- Front View -->
 		<button
 			id="Front"
 			class="py-1 {selectedView === View.Front ? 'active' : ''}"
@@ -55,6 +68,8 @@
 		>
 			<div class="md:text-md text-sm">Front View</div>
 		</button>
+		<!-- Front View -->
+		<!-- Side View -->
 		<button
 			id="Side"
 			class="py-1 {selectedView === View.Side ? 'active' : ''}"
@@ -64,6 +79,8 @@
 		>
 			<div class="md:text-md text-sm">Side View</div>
 		</button>
+		<!-- Side View -->
+		<!-- Toggle Show Grid -->
 		<button
 			class="toggle"
 			onclick={() => {
@@ -76,6 +93,8 @@
 				<div class="md:text-md text-sm">{viewGrid ? "On" : "Off"}</div>
 			</div>
 		</button>
+		<!-- Toggle Show Grid -->
+		<!-- Close BTN -->
 		<div class=" absolute top-0 w-0 h-0 p-1">
 			<button
 				class=" bg-transparent w-0 h-0"
@@ -84,8 +103,10 @@
 				✖
 			</button>
 		</div>
+		<!-- Close BTN -->
 	</div>
 {:else}
+	<!-- Button to open ViewPanel -->
 	<div
 		in:fly={{ x: -200, delay: 350 }}
 		id="openNav"
@@ -100,7 +121,10 @@
 			</div>
 		</button>
 	</div>
+	<!-- Button to open ViewPanel -->
 {/if}
+
+<!-- View Panel -->
 
 <style>
 	:root {
